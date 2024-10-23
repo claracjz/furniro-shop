@@ -1,0 +1,41 @@
+.container {
+    background-color: #FAF3EA;
+    padding: 4rem;
+    border-radius: 8px;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+   gap: 2rem;
+   flex-wrap: wrap;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 1rem;
+}
+
+.item-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.icon {
+    font-size: 2rem;
+    color: #333;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+p {
+    font-size: 1rem;
+    color: #666;
+    margin: 0;
+}

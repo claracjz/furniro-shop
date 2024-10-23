@@ -1,6 +1,8 @@
 import React from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Infobox from './components/Infobox';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
  
@@ -9,6 +11,8 @@ const App: React.FC = () => {
     <>
       <Header/>
       <Hero/>
+      <Infobox/>
+      <Footer/>
     </>
   )
 }

@@ -1,0 +1,92 @@
+.footer {
+    background-color: #FFFFFF;
+    padding: 40px;
+    font-family: 'Arial', sans-serif;
+}
+
+.top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.info {
+    max-width: 300px;
+}
+
+.info h3 {
+    font-size: 24px;
+    margin-bottom: 50px;
+}
+
+.info p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.links {
+    display: flex;
+    gap: 40px;
+}
+
+.links div {
+    margin-right: 40px;
+}
+
+.links h4 {
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+.links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.links li {
+    margin-bottom: 46px;
+}
+
+.links a {
+    color: #333;
+    text-decoration: none;
+}
+
+.links input {
+    padding: 8px 0;
+    width: 250px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    outline: none;
+    font-size: 16px;
+}
+
+.links input::placeholder {
+    color: #000000;
+    opacity: 0.7;
+}
+
+.links button {
+    background-color: #ffffff;
+    margin-left: 11px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    padding: 8px 2px;
+}
+
+.links button:hover {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.bottom {
+    text-align: left;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 20px;
+}
+
+.bottom p {
+    color: #888;
+    margin-left: 50px;
+}
