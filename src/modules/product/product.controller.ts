@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { ProductDto } from './product.dto';
 import { ProductService } from './product.service';
@@ -20,8 +21,16 @@ export class ProductController {
   }
 
   @Get()
-  async findAll() {
-    return this.productService.findAll();
+  async getProducts(
+    @Query('limit') limit?: number,
+    @Query('offset') offset?: number,
+    @Query('id') id?: number,
+  ) {
+    if (id) {
+      return this.productService.getProductById(id);
+    } else {
+      return this.productService.getAllProducts(limit, offset);
+    }
   }
 
   @Put(':id')

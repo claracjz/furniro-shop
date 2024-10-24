@@ -21,9 +21,8 @@ export class CategoryService {
     return category;
   }
 
-  async findAll() {
-    const category = await this.prisma.category.findMany();
-    return category;
+  async getAllCategories() {
+    return this.prisma.category.findMany();
   }
 
   async update(id: number, data: CreateCategoryDto) {

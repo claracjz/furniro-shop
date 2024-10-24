@@ -23,9 +23,23 @@ export class ProductService {
     return product;
   }
 
-  async findAll() {
-    const products = await this.prisma.product.findMany();
-    return products;
+  async getAllProducts(limit = 16, offset = 0) {
+    return this.prisma.product.findMany({
+      skip: offset,
+      take: limit,
+      include: {
+        category: true,
+      },
+    });
+  }
+
+  async getProductById(id: number) {
+    return this.prisma.product.findUnique({
+      where: { id },
+      include: {
+        category: true,
+      },
+    });
   }
 
   async update(id: number, data: ProductDto) {

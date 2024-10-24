@@ -1,0 +1,23 @@
+.categories {
+    text-align:center;
+    padding: 2rem 0;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.card {
+    width: 300px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+
+}
+

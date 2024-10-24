@@ -6,6 +6,7 @@ import Infobox from './components/Infobox';
 import Footer from './components/Footer';
 import Banner from './components/Banner';
 import FilterBar from './components/FilterBar';
+import Categories from './components/Categories';
 
 const App: React.FC = () => {
  
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <>
         <Header/>
         <Hero/>
+        <Categories/>
         <Infobox/>
         <Footer/>
         </>

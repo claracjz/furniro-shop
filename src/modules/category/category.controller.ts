@@ -20,8 +20,8 @@ export class CategoryController {
   }
 
   @Get()
-  async findAll() {
-    return this.categoryService.findAll();
+  async getAllCategories() {
+    return this.categoryService.getAllCategories();
   }
   @Put(':id')
   async update(@Param('id') id: number, @Body() data: CreateCategoryDto) {
