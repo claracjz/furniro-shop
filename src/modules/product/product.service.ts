@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ProductDto } from './product.dto';
 import { PrismaService } from 'src/database/PrismaService';
+import { Product } from '@prisma/client';
 
 @Injectable()
 export class ProductService {
@@ -39,6 +40,19 @@ export class ProductService {
       include: {
         category: true,
       },
+    });
+  }
+
+  async getRelatedProducts(
+    categoryId: number,
+    excludeId: number,
+  ): Promise<Product[]> {
+    return this.prisma.product.findMany({
+      where: {
+        categoryId,
+        id: { not: excludeId },
+      },
+      take: 4,
     });
   }
 

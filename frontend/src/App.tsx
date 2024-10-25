@@ -7,6 +7,8 @@ import Footer from './components/Footer';
 import Banner from './components/Banner';
 import FilterBar from './components/FilterBar';
 import Categories from './components/Categories';
+import Products from './components/Products';
+import SingleProduct from './components/SingleProduct';
 
 const App: React.FC = () => {
  
@@ -21,6 +23,7 @@ const App: React.FC = () => {
         <Header/>
         <Hero/>
         <Categories/>
+        <Products limit={8} showTitle={true}/>
         <Infobox/>
         <Footer/>
         </>
@@ -33,7 +36,18 @@ const App: React.FC = () => {
           <Header/>
           <Banner/>
           <FilterBar/>
+          <Products limit={16} showTitle={false}/>
           <Infobox/>
+          <Footer/>
+          </>
+        }
+        />
+        <Route
+        path='/product/:id'
+        element={
+          <>
+          <Header/>
+          <SingleProduct/>
           <Footer/>
           </>
         }
