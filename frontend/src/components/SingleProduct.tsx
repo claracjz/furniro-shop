@@ -35,6 +35,12 @@ useEffect(() => {
     const fetchProduct = async () => {
         const response = await fetch(`http://localhost:3000/product/${id}`);
             const data = await response.json();
+
+            if(!data || !data.category) {
+                return;
+            }
+
+            console.log(data);
             setProduct(data);
 
         const relatedResponse = await fetch(
@@ -47,7 +53,7 @@ useEffect(() => {
         fetchProduct();
     }, [id]);
 
-    if (!product) {
+    if (!product || !product.otherImagesLink) {
         return <p>Loading...</p>;
     }
 
@@ -60,7 +66,7 @@ useEffect(() => {
         <div className={styles.productImages}>
             <img src={product.imageLink} alt={product.name} />
             <div className={styles.smallImages}>
-                {product.otherImagesLink.map((image, index) => (
+                {product.otherImagesLink && product.otherImagesLink.map((image, index) => (
                     <img key={index} src={image} alt={`${product.name} ${index + 1}`} />
                 ))}
             </div>
@@ -96,7 +102,6 @@ useEffect(() => {
       <div className={styles.relatedProducts}>
         <h2>Related Products</h2>
         <Products products={relatedProducts} limit={4} showTitle={false} />
-        <button>Show More</button>
             </div>
             </div>
   );

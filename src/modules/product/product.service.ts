@@ -7,6 +7,15 @@ import { Product } from '@prisma/client';
 export class ProductService {
   constructor(private prisma: PrismaService) {}
 
+  async getProductsByCategory(categoryId: number, limit?: number) {
+    return await this.prisma.product.findMany({
+      where: {
+        categoryId,
+      },
+      take: limit,
+    });
+  }
+
   async create(data: ProductDto) {
     const productExists = await this.prisma.product.findFirst({
       where: {

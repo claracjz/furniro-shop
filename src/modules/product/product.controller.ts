@@ -16,6 +16,22 @@ import { ProductService } from './product.service';
 export class ProductController {
   constructor(private readonly productService: ProductService) {}
 
+  @Get()
+  async getProductsByCategory(
+    @Query('categoryId', ParseIntPipe) categoryId: number,
+    @Query('limit', ParseIntPipe) limit: number,
+  ): Promise<any> {
+    if (categoryId) {
+      return this.productService.getProductsByCategory(categoryId, limit);
+    }
+    return this.productService.getAllProducts(limit);
+  }
+
+  @Get(':id')
+  async getProductById(@Param('id', ParseIntPipe) id: number): Promise<any> {
+    return this.productService.getProductById(id);
+  }
+
   @Post()
   async getProducts(
     @Body() body: { limit?: number; offset?: number; id?: number },

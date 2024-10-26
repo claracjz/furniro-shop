@@ -9,6 +9,7 @@ import FilterBar from './components/FilterBar';
 import Categories from './components/Categories';
 import Products from './components/Products';
 import SingleProduct from './components/SingleProduct';
+import CategoriesProducts from './components/CategoriesProducts';
 
 const App: React.FC = () => {
  
@@ -23,11 +24,15 @@ const App: React.FC = () => {
         <Header/>
         <Hero/>
         <Categories/>
-        <Products limit={8} showTitle={true}/>
+        <Products limit={4} showTitle={true}/>
         <Infobox/>
         <Footer/>
         </>
         }
+        />
+        <Route
+        path='/shop/category/:id'
+        element={<CategoriesProducts />}
         />
         <Route
         path='/shop'

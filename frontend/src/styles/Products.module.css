@@ -10,7 +10,10 @@ h2 {
 }
 
 .card {
-    border: 1px solid #ddd;
+    position: relative;
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
     background-color: #fff;
@@ -18,13 +21,13 @@ h2 {
 }
 
 .card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
 }
 
 .image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: auto;
+    border-radius: 8px;
 }
 
 .info {
@@ -43,8 +46,43 @@ h2 {
 }
 
 .price {
-    font-size: 16px;
+    font-size: 1.2rem;
+    color: #333;
     font-weight: bold;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .overlay {
+    opacity: 1;
+}
+
+.seeDetailsButton {
+    padding: 10px 20px;
+    color: #d4a137;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .seeDetailsButton {
+    opacity: 1;
 }
 
 .discount {
