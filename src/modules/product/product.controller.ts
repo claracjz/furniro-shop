@@ -34,13 +34,25 @@ export class ProductController {
 
   @Post()
   async getProducts(
-    @Body() body: { limit?: number; offset?: number; id?: number },
+    @Body()
+    body: {
+      limit?: number;
+      offset?: number;
+      filters?: string[];
+      id?: number;
+      sortOrder?: 'price-low-high' | 'price-high-low' | 'Default';
+    },
   ): Promise<any> {
-    const { limit, offset, id } = body;
+    const { limit, offset, filters, sortOrder, id } = body;
     if (id) {
       return this.productService.getProductById(id);
     } else {
-      return this.productService.getAllProducts(limit, offset);
+      return this.productService.getAllProducts(
+        limit,
+        offset,
+        filters,
+        sortOrder,
+      );
     }
   }
 

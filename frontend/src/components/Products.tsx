@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Products.module.css";
 
-
 interface Product {
     id: number;
     name: string;
@@ -19,6 +18,8 @@ interface ProductsProps {
     showTitle?: boolean;
     showMore?: boolean;
     fetchOnMount?: boolean;
+    showDiscountedOnly?: boolean;
+    sortOrder?: 'price-low-high' | 'price-high-low' | 'Default';
 }
 
 const Products: React.FC<ProductsProps> = ({ 
@@ -27,6 +28,8 @@ const Products: React.FC<ProductsProps> = ({
     showTitle = true,
     showMore = true,
     fetchOnMount = true,
+    showDiscountedOnly = false,
+    sortOrder = 'Default'
  }) => {
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const navigate = useNavigate(); 
@@ -64,20 +67,52 @@ useEffect(() => {
     }
 }, [initialProducts]);
 
+const getFilteredAndSortedProducts = () => {
+    let filteredProducts = [...products];
+
+    if(showDiscountedOnly) {
+        filteredProducts = filteredProducts.filter(product => product.discountPrice !== null);
+    }
+
+    if (sortOrder === 'price-low-high') {
+        filteredProducts.sort((a, b) => (a.discountPrice || b.price) - (b.discountPrice || b.price));
+    } else if (sortOrder === 'price-high-low') {
+        filteredProducts.sort((a, b) => (b.discountPrice || b.price) - (a.discountPrice || a.price)); 
+    }
+
+    return filteredProducts;
+}
+
+
+
 const handleSeeDetails = (productId: number) => {
     navigate(`/product/${productId}`);
 };
+
+const handleRedirect = () => {
+    navigate('/shop');
+};
+
+const displayedProducts = getFilteredAndSortedProducts().slice(0, limit);
 
     return (
         <div>
              {showTitle && <h2>Our Products</h2>}
             <div className={styles.container}>
-
-                {products.slice(0, limit).map((product) => (
+            {displayedProducts.map((product) => (
                     <div key={product.id} className={styles.card}>
-                        <div className={styles.overlay} onClick={() => handleSeeDetails(product.id)}>
-                            <button className={styles.seeDetailsButton}>See Details</button>
-                            </div>
+                        <div className={styles.badges}>
+                        {product.isNew && <span className={styles.newBadge}>New</span>}
+    {product.discountPrice !== null && (
+        <span className={styles.discountBadge}>
+            -{Math.round(100 - (product.discountPrice / product.price) * 100)}%
+        </span>
+    )}
+</div>
+
+                    <div className={styles.overlay} onClick={() => handleSeeDetails(product.id)}>
+                        <button className={styles.seeDetailsButton}>See Details</button>
+                    </div>
                         <img src={product.imageLink} alt={product.name} className={styles.image} />
                         <div className={styles.info}>
                         <h3>{product.name}</h3>
@@ -90,12 +125,12 @@ const handleSeeDetails = (productId: number) => {
                              ) : (
                             <p className={styles.price}>${Number(product.price || 0).toFixed(2)}</p>
                              )}
-                             {product.isNew && <span className={styles.newBadge}>New</span>}
+                           
                         </div>
                     </div>
                 ))}
         </div>
-        {showMore && <button className={styles.button}>Show More</button>}
+        {showMore && <button className={styles.button} onClick={handleRedirect}>Show More</button>}
         </div>
     );
 };

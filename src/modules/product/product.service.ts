@@ -33,13 +33,30 @@ export class ProductService {
     return product;
   }
 
-  async getAllProducts(limit = 16, offset = 0) {
+  async getAllProducts(
+    limit = 16,
+    offset = 0,
+    filters?: string[] | undefined,
+    sortOrder: 'price-low-high' | 'price-high-low' | 'Default' = 'Default',
+  ): Promise<any> {
+    const where: any = {};
+    if (filters?.includes('discounted')) {
+      where.discountPrice = { not: null };
+    }
+
+    let orderBy: { price?: 'asc' | 'desc' } | undefined;
+    if (sortOrder === 'price-low-high') {
+      orderBy = { price: 'asc' };
+    } else if (sortOrder === 'price-high-low') {
+      orderBy = { price: 'desc' };
+    } else if (sortOrder === 'Default') {
+      orderBy = undefined;
+    }
     return this.prisma.product.findMany({
       skip: offset,
       take: limit,
-      include: {
-        category: true,
-      },
+      where: where,
+      orderBy: orderBy,
     });
   }
 

@@ -59,17 +59,17 @@ useEffect(() => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.productInfo}>
         <div className={styles.breadcrumb}>
-        <p>Home &gt; Shop &gt; Product {id}</p>
+        <p>Home &gt; Shop &gt; {product.name}</p>
         </div>
+      <div className={styles.productInfo}>
         <div className={styles.productImages}>
-            <img src={product.imageLink} alt={product.name} />
-            <div className={styles.smallImages}>
-                {product.otherImagesLink && product.otherImagesLink.map((image, index) => (
+        <div className={styles.smallImages}>
+        {product.otherImagesLink && product.otherImagesLink.map((image, index) => (
                     <img key={index} src={image} alt={`${product.name} ${index + 1}`} />
-                ))}
-            </div>
+        ))}
+       </div>
+       <img src={product.imageLink} alt={product.name} className={styles.mainImage}/>
         </div>
         </div>
         <div className={styles.productDetailsContainer}>
@@ -79,13 +79,29 @@ useEffect(() => {
        
        <div className={styles.sizeOptions}>
        <p>Size</p>
-       <select>
-       <option value="L">L</option>
-       <option value="XL">XL</option>
-       <option value="XS">XS</option>
-       </select>
-       </div>
+       <div className={styles.sizeButtons}>
+       <button value="L">L</button>
+       <button value="XL">XL</button>
+       <button value="XS">XS</button>
+     </div>
+    </div>
+    <div className={styles.colorOptions}>
+        <p>Color</p>
+        <div className={styles.colorCircles}>
+            <div className={`${styles.colorCircle} ${styles.purple}`}></div>
+            <div className={`${styles.colorCircle} ${styles.black}`}></div>
+            <div className={`${styles.colorCircle} ${styles.gold}`}></div>
+        </div>
+    </div>
+   
        <div className={styles.productCartButtons}>
+       <div className={styles.quantityOptions}>
+       <div className={styles.quantityButton}>
+        <span className={styles.minus}>-</span>
+        <span className={styles.quantity}>1</span>
+        <span className={styles.plus}>+</span>
+        </div>
+    </div>
        <button>Add to Cart</button>
        <button>Compare</button>
        </div>
@@ -95,8 +111,10 @@ useEffect(() => {
        </div>
        </div>
        <div className={styles.productDescription}>
+        <div className={styles.descriptionHeader}>
         <h2>Description</h2>
         <h2>Additional Information</h2>
+        </div>
         <p>{product.largeDescription}</p>
        </div>
       <div className={styles.relatedProducts}>
