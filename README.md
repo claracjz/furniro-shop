@@ -47,7 +47,7 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 
 ## Stay in touch
 
-[Connect with me on linkedin](www.linkedin.com/in/ana-vitoria-dev/)
+[Connect with me on linkedin](www.linkedin.com/in/ana-vitoria-dev)
 
 
 ## License
